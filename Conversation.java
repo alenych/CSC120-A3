@@ -23,9 +23,9 @@ class Conversation {
     sc.nextLine();
     
     // defining a variable transcript and count to keep count of how many lines in the chat
-    String[] transcript = new String[nRound + 2];
-    transcript[0] = "\nCool! What is on your mind today?";
-    System.out.println(transcript[0]);
+    //String[] transcript = new String[nRound+2];
+    //transcript[0] = "\nCool! What is on your mind today?";
+    //System.out.println(transcript[0]);
     
     // For loop that runs the chatbot until the user wants to stop
     for (int count = 0; count < nRound; count++) {
@@ -33,13 +33,35 @@ class Conversation {
       String computer_response;
 
 
-      String mirrored_r = words.replace("\\bI\\b","you");
+      /* 
+      String[] arrwords = words.split(" ");
+      //for (int i=0; i < arrwords.length; i++){
+      for (String checkPronouns : arrwords){
+        //System.out.println(checkPronouns);
+        if (checkPronouns.contains("I")){
+          String[] new = checkPronouns.replace("I","you");
+          System.out.println(new);
+        }
+      }
+        /* */
+
+      
+      String mirrored_r = words.replace("I","you");
       mirrored_r = mirrored_r.replace("me", "you");
       mirrored_r = mirrored_r.replace("am", "are");
       mirrored_r = mirrored_r.replace("my","your");
-      mirrored_r = mirrored_r.replace("your","my");
-      mirrored_r = mirrored_r.replace("you", "I");
-
+      
+      // To make sure it does not re replace already converted pronouns
+      if (!words.contains("I")){
+        mirrored_r = mirrored_r.replace("you", "I");
+      }
+      if (!words.contains("my")){
+        mirrored_r = mirrored_r.replace("your","my");
+      }
+      if (!words.contains("am")){
+        mirrored_r = mirrored_r.replace("are", "am");
+      }
+      
 
       
 
@@ -55,13 +77,26 @@ class Conversation {
         computer_response = chatbot_responses[rand.nextInt(chatbot_responses.length)];
         System.out.println(computer_response);
       }
+
+      Arraylist<string> transcript = new Arraylist<string>();
+        for (int c = nRound; c>0 ; c--){
+        transcript.add(computer_response);
+
+        }
     }
-    System.out.println("Have a good day!");
+    
+    
+    System.out.println("\nHave a good day!\n");
     System.out.println(transcript);
+    
+    
+    
+    //System.out.println("transcript is:" + transcript);
     sc.close();
     
   }
 }
+
   
 
     
