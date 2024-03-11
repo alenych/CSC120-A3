@@ -1,5 +1,7 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Random;
+
 class Conversation {
 
   public static void main(String[] arguments) {
@@ -21,6 +23,8 @@ class Conversation {
     System.out.println("How many rounds of conversation would you like to have?");
     int nRound = sc.nextInt();
     sc.nextLine();
+
+    ArrayList <String> transcript = new ArrayList <String>();
     
     // defining a variable transcript and count to keep count of how many lines in the chat
     //String[] transcript = new String[nRound+2];
@@ -78,16 +82,21 @@ class Conversation {
         System.out.println(computer_response);
       }
 
-      Arraylist<string> transcript = new Arraylist<string>();
-        for (int c = nRound; c>0 ; c--){
-        transcript.add(computer_response);
+       
+      transcript.add("User: " + words);
+      transcript.add("Chatbot: " + computer_response);
+        
 
         }
-    }
+    
     
     
     System.out.println("\nHave a good day!\n");
-    System.out.println(transcript);
+    
+    System.out.println("Conversation Transcript: ");
+    for (String line: transcript){
+      System.out.println(line);
+    }
     
     
     
